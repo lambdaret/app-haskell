@@ -25,7 +25,9 @@ source-repository head
 
 library
   exposed-modules:
+      Demo
       Lib
+      Project
   other-modules:
       Paths_app_haskell
   hs-source-dirs:
@@ -33,6 +35,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , text
   default-language: Haskell2010
 
 executable app-haskell-exe
@@ -45,6 +48,7 @@ executable app-haskell-exe
   build-depends:
       app-haskell
     , base >=4.7 && <5
+    , text
   default-language: Haskell2010
 
 test-suite app-haskell-test
@@ -58,4 +62,5 @@ test-suite app-haskell-test
   build-depends:
       app-haskell
     , base >=4.7 && <5
+    , text
   default-language: Haskell2010

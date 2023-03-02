@@ -18,3 +18,14 @@ stack run
 nameserver 192.168.xx.x
 nameserver 8.8.8.8          <--- 추가
 ```
+
+```
+https://www.youtube.com/watch?v=pe6S5skZwNE
+
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+ghcup tui
+
+cabal install hlint
+cabal install ghc-mod
+
+```
