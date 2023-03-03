@@ -4,6 +4,8 @@
 module Demo where
 
 import Project
+import Reporting
+import PrettyPrint
 
 someProject :: Project
 someProject = ProjectGroup "Sweden" [stockholm, gothenburg, malmo]

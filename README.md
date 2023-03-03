@@ -28,4 +28,7 @@ ghcup tui
 cabal install hlint
 cabal install ghc-mod
 
+putStrLn (prettyProject someProject)
+pr <- calculateProjectReport someProject
+putStrLn (prettyReport pr)
 ```
