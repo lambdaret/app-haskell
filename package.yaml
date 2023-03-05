@@ -24,6 +24,8 @@ dependencies:
 - text
 - random
 - containers
+- bin
+- transformers
 
 ghc-options:
 - -Wall
