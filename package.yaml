@@ -26,6 +26,7 @@ dependencies:
 - containers
 - bin
 - transformers
+- mtl
 
 ghc-options:
 - -Wall
@@ -51,6 +52,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - app-haskell
+
 
 tests:
   app-haskell-test:
