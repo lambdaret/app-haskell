@@ -30,6 +30,7 @@ library
       ExNewtype
       ExType
       Lib
+      MyFunctor
       PrettyPrint
       Project
       Reporting
