@@ -27,6 +27,14 @@ dependencies:
 - bin
 - transformers
 - mtl
+- aeson
+- time
+- http-conduit
+- bytestring
+- lens
+- lens-aeson
+- wreq
+# - unordered-containers
 
 ghc-options:
 - -Wall

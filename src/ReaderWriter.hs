@@ -1,4 +1,3 @@
--- module ReaderWriter where
 module ReaderWriter where
 
 import Control.Monad.Reader
