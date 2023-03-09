@@ -27,6 +27,10 @@ library
   exposed-modules:
       Database
       Demo
+      Ex1
+      ExAeson1
+      ExAeson2
+      ExchangeRate
       ExJson
       ExLens
       ExNewtype
@@ -57,9 +61,11 @@ library
     , lens-aeson
     , mtl
     , random
+    , scientific
     , text
     , time
     , transformers
+    , vector
     , wreq
   default-language: Haskell2010
 
@@ -82,9 +88,11 @@ executable app-haskell-exe
     , lens-aeson
     , mtl
     , random
+    , scientific
     , text
     , time
     , transformers
+    , vector
     , wreq
   default-language: Haskell2010
 
@@ -108,8 +116,10 @@ test-suite app-haskell-test
     , lens-aeson
     , mtl
     , random
+    , scientific
     , text
     , time
     , transformers
+    , vector
     , wreq
   default-language: Haskell2010

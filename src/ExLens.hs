@@ -34,3 +34,15 @@ main = do
   case maybeRates of
     Nothing -> putStrLn "Error fetching rates data"
     Just rates -> print rates
+
+getTestData = do
+  let url = "https://api.exchangerate.host/timeseries?start_date=2023-03-06&end_date=2023-03-07"
+  request <- parseRequest url
+  response <- httpJSON request :: IO (Response Value)
+  return response
+
+-- response ^. to getResponseBody
+--  v ^. _Object ^. at "rates" . to fromJust . _Object
+-- ghci> v ^. _Object ^. at "rates" . to fromJust . _Object . to Data.Aeson.KeyMap.keys
+-- ["2023-03-06","2023-03-07"]
+-- response ^. to getResponseBody . _Object ^. at "rates" . to fromJust . _Object ^. at "2023-03-07" . to fromJust . _Object
