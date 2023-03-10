@@ -1,26 +1,35 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module ExchangeRate where
+module ExchangeRate2 where
 
 import Control.Applicative qualified as A
 import Data.Aeson
 import Data.Aeson.Key
 import Data.Aeson.KeyMap qualified as KM
 import Data.Aeson.Types
+import Data.List
 import Data.Map
 import Data.Maybe
 import Data.Scientific
 import Data.Text
+import Data.Vector qualified as V
 import Network.HTTP.Simple
+import Numeric
 
 url = "https://api.exchangerate.host/timeseries?start_date=2023-03-07&end_date=2023-03-07"
 
 -- data Rate = Rate
 --   { date :: Text,
 --     symbol :: Text,
---     rate :: String
+--     rate :: Double
 --   }
 --   deriving (Show)
+newtype Rate = Rate
+  { unRate :: (Text, Text, Double)
+  }
+  deriving (Show)
+
+newtype RateList = RateList {unRateList :: [(Text, Text, Text)]} deriving (Show)
 
 data ExchangeRate = ExchangeRate
   { -- { rates :: Maybe (Map String Double),
@@ -36,47 +45,12 @@ instance FromJSON ExchangeRate where
     where
       getDates (Object o) = fmap toText (KM.keys o)
       getDates _ = []
-      -- x (Object o) = KM.lookup (fromText "abc") o
       getRates (Object o) = do
         date' :: Key <- KM.keys o
         (symbol', Number rate') <- (KM.toList . fromObject) (fromJust (KM.lookup date' o))
-        return (toText date', toText symbol', read (show rate'))
+        return (toText date', toText symbol', toRealFloat rate')
       getRates _ = error "error"
   parseJSON _ = A.empty
-
--- data ExchangeRate = ExchangeRate
---   {
---     base :: Text,
---   }
---   deriving (Show)
-
--- data Rate = Rate
---   { base :: Text,
---     date :: Text,
---     symbol :: Text,
---     rate :: Maybe Double
---   }
-
--- instance FromJSON [Rate] where
---   parseJSON (Object o) = do
---     (base, date, symbol, rate) <- parseExchangeRate (Object o)
---     return $ Rate {base = base, date = date, symbol = symbol, rate = rate}
---   parseJSON _ = []
-
--- parseExchangeRate (Object v) = do
--- (date, rateObj) <- KM.toList rates
--- (symbol, rate) <- KM.toList rateObj
--- return (date, symbol, rate)
-
--- return Rate {base = base, date = date, symbol = symbol, rate = rate}
-
--- parseExchangeRate = do
---   response <- httpJSON url :: IO (Response Value)
---   let body = getResponseBody response
---   let o = case body of
---         Object o -> o
---         _ -> error "Error"
---   return o
 
 fromObject :: Value -> Object
 fromObject (Object o) = o

@@ -36,6 +36,7 @@ dependencies:
 - wreq
 - vector
 - scientific
+- bytestring
 # - unordered-containers
 
 ghc-options:

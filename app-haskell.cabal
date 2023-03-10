@@ -30,7 +30,11 @@ library
       Ex1
       ExAeson1
       ExAeson2
+      ExAeson3
+      ExAeson4
+      ExAeson5
       ExchangeRate
+      ExchangeRate2
       ExJson
       ExLens
       ExNewtype
