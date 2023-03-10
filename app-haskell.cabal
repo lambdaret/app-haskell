@@ -36,6 +36,7 @@ library
       ExAeson6
       ExchangeRate
       ExchangeRate2
+      ExchangeRate3
       ExJson
       ExLens
       ExNewtype
