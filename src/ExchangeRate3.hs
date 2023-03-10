@@ -1,10 +1,14 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-{-# LANGUAGE DeriveGeneric     #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric         #-}
+{-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE OverloadedStrings     #-}
 module ExchangeRate3 where
 
 import           Data.Aeson
-import qualified Data.Map            as M
+import qualified Data.ByteString.Lazy as BL
+import           Data.Char
+import qualified Data.Csv             as CSV
+import qualified Data.Map             as M
 import           Data.Text
 import           GHC.Generics
 import           Network.HTTP.Simple
@@ -40,3 +44,27 @@ showRates :: IO ()
 showRates = do
   ex <- getExchangeRate
   print $ getRates ex
+
+data Rate = Rate {
+  wDate   :: Text,
+  wBase   :: Text,
+  wSymbol :: Text,
+  wRate   :: Double
+} deriving (Show, Generic)
+
+myOptions :: CSV.EncodeOptions
+myOptions = CSV.defaultEncodeOptions {
+  CSV.encDelimiter = fromIntegral (ord '\t')
+}
+
+instance CSV.ToRecord Rate
+
+writeToTsv :: IO ()
+writeToTsv = do
+  ex <- getExchangeRate
+  BL.writeFile "exchange_rate.tsv" $ CSV.encodeWith myOptions $ fmap (\(a,b,c,d)-> Rate a b c d) (getRates ex)
+
+writeToCsv :: IO ()
+writeToCsv = do
+  ex <- getExchangeRate
+  BL.writeFile "exchange_rate.tsv" $ CSV.encode $ fmap (\(a,b,c,d)-> Rate a b c d) (getRates ex)

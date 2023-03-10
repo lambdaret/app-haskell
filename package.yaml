@@ -37,6 +37,7 @@ dependencies:
 - vector
 - scientific
 - bytestring
+- cassava
 # - unordered-containers
 
 ghc-options:

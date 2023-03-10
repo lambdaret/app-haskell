@@ -61,8 +61,10 @@ library
     , base >=4.7 && <5
     , bin
     , bytestring
+    , cassava
     , containers
     , http-conduit
+    , hxt
     , lens
     , lens-aeson
     , mtl
@@ -88,8 +90,10 @@ executable app-haskell-exe
     , base >=4.7 && <5
     , bin
     , bytestring
+    , cassava
     , containers
     , http-conduit
+    , hxt
     , lens
     , lens-aeson
     , mtl
@@ -116,8 +120,10 @@ test-suite app-haskell-test
     , base >=4.7 && <5
     , bin
     , bytestring
+    , cassava
     , containers
     , http-conduit
+    , hxt
     , lens
     , lens-aeson
     , mtl

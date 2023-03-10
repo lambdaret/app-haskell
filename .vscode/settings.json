@@ -3,5 +3,5 @@
   "editor.defaultFormatter": "haskell.haskell",
   "editor.formatOnType": true,
   "editor.tabSize": 2,
-  "haskell.formattingProvider": "brittany"
+  "haskell.formattingProvider": "stylish-haskell"
 }
