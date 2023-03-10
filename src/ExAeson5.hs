@@ -1,12 +1,12 @@
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module ExAeson5 where
 
-import Data.Aeson
-import Data.Aeson.Types
-import Data.Vector (fromList, toList)
-import GHC.Generics
+import           Data.Aeson
+import           Data.Aeson.Types
+import           Data.Vector      (fromList, toList)
+import           GHC.Generics
 
 -- 예제 JSON 배열
 jsonData :: Value
@@ -20,7 +20,7 @@ jsonData =
 -- 구조체를 파싱하는 함수
 data Person = Person
   { name :: String,
-    age :: Int
+    age  :: Int
   }
   deriving (Show, Generic)
 
@@ -34,7 +34,7 @@ parseArray = withArray "array" $ \arr -> do
   traverse parseJSON (toList arr)
 
 -- 파싱 결과를 출력합니다.
-main :: IO ()
-main = do
+mainExAeson5 :: IO ()
+mainExAeson5 = do
   let result = parseMaybe parseArray jsonData
   print result -- Just [Person {name = "John Doe", age = 30},Person {name = "Jane Doe", age = 25}]

@@ -7,4 +7,4 @@ doubleInt n = n*2
 
 doubleInt' :: Amount -> Amount
 doubleInt' n = n*2
-    
+

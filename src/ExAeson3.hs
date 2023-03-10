@@ -3,9 +3,9 @@
 
 module ExAeson3 where
 
-import Data.Aeson
-import Data.Aeson.Types
-import Data.Vector (fromList, toList)
+import           Data.Aeson
+import           Data.Aeson.Types
+import           Data.Vector      (fromList, toList)
 
 -- 예제 JSON 배열
 jsonData :: Value
@@ -25,7 +25,7 @@ instance FromJSON MyInteger where
     MyInteger <$> traverse parseJSON (toList arr)
 
 -- 파싱 결과를 출력합니다.
-main :: IO ()
-main = do
+mainExAeson3 :: IO ()
+mainExAeson3 = do
   let result = parseMaybe parseArray jsonData
   print result -- Just [1,2,3]

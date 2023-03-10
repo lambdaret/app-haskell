@@ -1,14 +1,14 @@
 module Reporting where
 
-import Data.Monoid (getSum)
+import           Data.Monoid (getSum)
 
-import qualified Database as DB
-import Project
+import qualified Database    as DB
+import           Project
 
 data Report = Report
     { budgetProfit :: Money
-     , netProfit :: Money
-     , difference :: Money
+     , netProfit   :: Money
+     , difference  :: Money
     } deriving (Show, Eq)
 
 instance Semigroup Report where
@@ -30,12 +30,12 @@ calculateReport budget transactions =
         where
             budgetProfit' = budgetIncome budget - budgetExpenditure budget
             netProfit' = getSum (foldMap asProfit transactions)
-            asProfit (Sale m) = pure m
+            asProfit (Sale m)     = pure m
             asProfit (Purchase m) = pure (negate m)
 
 calculateProjectReport :: Project -> IO Report
 calculateProjectReport = calc
   where
-    calc (Project p _) = 
+    calc (Project p _) =
         calculateReport <$> DB.getBudget p <*> DB.getTransactions p
     calc (ProjectGroup _ projects) = foldMap calc projects

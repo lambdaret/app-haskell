@@ -1,11 +1,11 @@
 module TransformersLifting where
 
 -- import Control.Monad (join)
-import Control.Monad.IO.Class (MonadIO (liftIO))
-import Control.Monad.Trans.Class (lift)
-import Control.Monad.Trans.Maybe (MaybeT (..))
-import Control.Monad.Trans.Reader (ReaderT, ask, runReaderT)
-import Data.Char (isLower, isUpper)
+import           Control.Monad.IO.Class     (MonadIO (liftIO))
+import           Control.Monad.Trans.Class  (lift)
+import           Control.Monad.Trans.Maybe  (MaybeT (..))
+import           Control.Monad.Trans.Reader (ReaderT, ask, runReaderT)
+import           Data.Char                  (isLower, isUpper)
 
 type Env = (Maybe String, Maybe String, Maybe String)
 
@@ -70,7 +70,7 @@ main3 = do
     debugFunc pass
     return (usr, email, pass)
   case maybeCreds of
-    Nothing -> print "Couldn't login!"
+    Nothing        -> print "Couldn't login!"
     Just (u, e, p) -> login u e p
 
 -- main4 = do
@@ -80,6 +80,6 @@ f1 = do
   x <- runReaderT (runMaybeT readUserName') (Just "aaa", Just "bbb", Just "ccc")
   case x of
     Nothing -> print "error"
-    Just s -> print s
+    Just s  -> print s
 
 -- f1 (Just "aaa", Just "bbb", Just "ccc")

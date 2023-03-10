@@ -2,12 +2,12 @@
 
 module ExLens where
 
-import Control.Lens
-import Data.Aeson.Lens
-import Data.Aeson.Types
-import Data.Map
-import Data.Text qualified as T
-import Network.HTTP.Simple
+import           Control.Lens
+import           Data.Aeson.Lens
+import           Data.Aeson.Types
+import           Data.Map
+import qualified Data.Text           as T
+import           Network.HTTP.Simple
 
 -- | API endpoint URL
 apiUrl :: String
@@ -28,11 +28,11 @@ rateBySymbol ratesMap = do
   return (T.pack "USD", rateSymbol)
 
 -- | Entry point of the program
-main :: IO ()
-main = do
+mainLens :: IO ()
+mainLens = do
   maybeRates <- fetchExchangeRates
   case maybeRates of
-    Nothing -> putStrLn "Error fetching rates data"
+    Nothing    -> putStrLn "Error fetching rates data"
     Just rates -> print rates
 
 getTestData = do

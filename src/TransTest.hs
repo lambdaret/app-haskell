@@ -1,8 +1,8 @@
 module TransTest where
 
-import Control.Monad.Trans.Class (lift)
-import Control.Monad.Trans.Maybe (MaybeT (..), runMaybeT)
-import Control.Monad.Trans.Reader (ReaderT (..), ask)
+import           Control.Monad.Trans.Class  (lift)
+import           Control.Monad.Trans.Maybe  (MaybeT (..), runMaybeT)
+import           Control.Monad.Trans.Reader (ReaderT (..), ask)
 
 -- `ReaderT`를 사용하여 구성 값을 얻습니다.
 getConfig :: ReaderT String IO String
@@ -29,4 +29,4 @@ main10 = do
   result <- runReaderT (runMaybeT calculate) config
   case result of
     Just value -> putStrLn $ "Result: " ++ show value
-    Nothing -> putStrLn "Failed to calculate result"
+    Nothing    -> putStrLn "Failed to calculate result"

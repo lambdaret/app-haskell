@@ -2,14 +2,12 @@
 
 module ExAeson2 where
 
-import Control.Applicative
-import Data.Aeson
-import Data.Aeson.Key
-import Data.Aeson.KeyMap qualified as KM
-import Data.Map qualified as Map
-import Data.Text (Text)
-import Data.Tuple (uncurry)
-import Data.Vector (toList)
+import           Control.Applicative
+import           Data.Aeson
+import           Data.Aeson.Key
+import qualified Data.Aeson.KeyMap   as KM
+import           Data.Text           (Text)
+import           Data.Vector         (toList)
 
 data Person = Person {name :: Text, age :: Int} deriving (Show)
 
@@ -30,7 +28,7 @@ newtype PersonList = PersonList {unPersonList :: [Person]} deriving (Show)
 
 instance FromJSON PersonList where
   parseJSON (Array v) = PersonList <$> mapM parseJSON (toList v)
-  parseJSON _ = empty
+  parseJSON _         = empty
 
 -- instance FromJSON Person where
 --   parseJSON (Object v) = do

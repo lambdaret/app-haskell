@@ -2,16 +2,16 @@
 
 module ExchangeRate where
 
-import Control.Applicative qualified as A
-import Data.Aeson
-import Data.Aeson.Key
-import Data.Aeson.KeyMap qualified as KM
-import Data.Aeson.Types
-import Data.Map
-import Data.Maybe
-import Data.Scientific
-import Data.Text
-import Network.HTTP.Simple
+import qualified Control.Applicative as A
+import           Data.Aeson
+import           Data.Aeson.Key
+import qualified Data.Aeson.KeyMap   as KM
+import           Data.Aeson.Types
+import           Data.Map
+import           Data.Maybe
+import           Data.Scientific
+import           Data.Text
+import           Network.HTTP.Simple
 
 url = "https://api.exchangerate.host/timeseries?start_date=2023-03-07&end_date=2023-03-07"
 
@@ -35,10 +35,10 @@ instance FromJSON ExchangeRate where
     return $ ExchangeRate {rates = getRates objs, dates = Just (getDates objs)}
     where
       getDates (Object o) = fmap toText (KM.keys o)
-      getDates _ = []
+      getDates _          = []
       -- x (Object o) = KM.lookup (fromText "abc") o
       getRates (Object o) = do
-        date' :: Key <- KM.keys o
+        date' <- KM.keys o
         (symbol', Number rate') <- (KM.toList . fromObject) (fromJust (KM.lookup date' o))
         return (toText date', toText symbol', read (show rate'))
       getRates _ = error "error"
@@ -80,7 +80,7 @@ instance FromJSON ExchangeRate where
 
 fromObject :: Value -> Object
 fromObject (Object o) = o
-fromObject _ = error "Error"
+fromObject _          = error "Error"
 
 getBody = do
   response <- httpJSON url :: IO (Response Value)

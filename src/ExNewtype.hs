@@ -18,8 +18,8 @@ module ExNewtype where
 --   | i > 0     = Just (PositiveInt i)
 --   | otherwise = Nothing
 
-import Data.Word (Word8)
-import Data.Bits (testBit)
+import           Data.Bits (testBit)
+import           Data.Word (Word8)
 newtype Bit = Bit Word8
 
 getBit :: Bit -> Int -> Bool

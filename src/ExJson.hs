@@ -2,17 +2,15 @@
 
 module ExJson where
 
-import Data.Aeson (Value (Object), withObject, (.:))
-import Data.Aeson.Types
-import Data.Map
-import Network.HTTP.Simple
+import           Data.Aeson          (Value (Object), withObject, (.:))
+import           Data.Aeson.Types
+import           Data.Map
+import           Network.HTTP.Simple
 
--- import qualified Data.Aeson.Types as A
--- let maybeFoo = obj A..:? "foo" :: Maybe String
 
 getObj res = case getResponseBody res of
   Object o -> o
-  _ -> error "Exception"
+  _        -> error "Exception"
 
 -- getRates = lookup "rates"
 

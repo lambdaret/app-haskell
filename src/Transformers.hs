@@ -1,6 +1,6 @@
 module Transformers where
 
-import Data.Char (isLower, isUpper)
+import           Data.Char (isLower, isUpper)
 
 -- main1 :: IO ()
 -- main1 = do
@@ -43,5 +43,5 @@ main1 = do
         Just email -> do
           maybePassword <- readPassword
           case maybePassword of
-            Nothing -> print "Invalid Password"
+            Nothing       -> print "Invalid Password"
             Just password -> login uName email password

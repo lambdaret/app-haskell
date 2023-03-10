@@ -2,7 +2,7 @@
 
 module Project where
 
-import Data.Text (Text)
+import           Data.Text (Text)
 
 newtype Money = Money
   { unMoney :: Double
@@ -20,7 +20,7 @@ data Project
   deriving (Show, Eq)
 
 data Budget = Budget
-  { budgetIncome :: Money,
+  { budgetIncome      :: Money,
     budgetExpenditure :: Money
   }
   deriving (Show, Eq)

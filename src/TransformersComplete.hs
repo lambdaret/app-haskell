@@ -1,7 +1,7 @@
 module TransformersComplete where
 
-import Control.Monad.Trans.Maybe (MaybeT (..))
-import Data.Char (isLower, isUpper)
+import           Control.Monad.Trans.Maybe (MaybeT (..))
+import           Data.Char                 (isLower, isUpper)
 
 -- main1 :: IO ()
 -- main1 = do
@@ -40,5 +40,5 @@ main2 = do
     pass <- readPassword
     return (usr, email, pass)
   case maybeCreds of
-    Nothing -> print "Couldn't login!"
+    Nothing        -> print "Couldn't login!"
     Just (u, e, p) -> login u e p

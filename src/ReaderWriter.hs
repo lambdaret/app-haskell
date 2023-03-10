@@ -1,8 +1,8 @@
 module ReaderWriter where
 
-import Control.Monad.Reader
-import Data.Maybe (fromMaybe)
-import System.Environment (lookupEnv)
+import           Control.Monad.Reader
+import           Data.Maybe           (fromMaybe)
+import           System.Environment   (lookupEnv)
 
 data Environment = Environment
   { param1 :: String,
@@ -38,7 +38,7 @@ func2' = do
   let res3 = func3 env
   return (2 + floor res3)
 
-main = do
+mainRW = do
   env <- loadEnv
   let str = runReader func1' env
   print str

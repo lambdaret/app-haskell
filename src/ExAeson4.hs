@@ -2,11 +2,11 @@
 
 module ExAeson4 where
 
-import Data.Aeson
-import Data.Aeson.KeyMap qualified as KM
-import Data.Aeson.Types
-import Data.Maybe
-import Data.Vector
+import           Data.Aeson
+import qualified Data.Aeson.KeyMap as KM
+import           Data.Aeson.Types
+import           Data.Maybe
+import           Data.Vector
 
 jsonData :: Value
 jsonData =
@@ -17,8 +17,8 @@ jsonData =
     ]
 
 data Person = Person
-  { name :: String,
-    age :: Int,
+  { name      :: String,
+    age       :: Int,
     interests :: Interests
   }
   deriving (Show)
@@ -42,8 +42,8 @@ parsePerson = withObject "person" $ \obj -> do
       )
       (fromJust (KM.lookup "interests" obj))
 
-main :: IO ()
-main = do
+mainExAeson4 :: IO ()
+mainExAeson4 = do
   print $ parseMaybe parsePerson jsonData
 
 --   print $ parseMaybe parsePerson (encode jsonData)

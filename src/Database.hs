@@ -1,7 +1,7 @@
 module Database where
 
-import Project
-import System.Random (getStdRandom, randomR)
+import           Project
+import           System.Random (getStdRandom, randomR)
 
 getBudget :: ProjectId -> IO Budget
 getBudget _ = do

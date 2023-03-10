@@ -1,12 +1,8 @@
 module Ex1 where
 
-import Control.Applicative
-import Data.Aeson
--- import Data.HashMap.Strict qualified as HMS
+import           Data.Aeson
 
-import Data.Aeson.KeyMap
-import Data.Map qualified as HMS
-import Data.Text (Text)
+import           Data.Aeson.KeyMap
 
 newtype Test = Test [Int] deriving (Show)
 

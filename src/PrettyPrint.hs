@@ -1,11 +1,11 @@
 module PrettyPrint where
 
-import qualified Data.Text as Text
-import Data.Tree
-import Text.Printf
+import qualified Data.Text   as Text
+import           Data.Tree
+import           Text.Printf
 
-import Project
-import Reporting
+import           Project
+import           Reporting
 
 asTree :: Project -> Tree String
 asTree project =
@@ -17,7 +17,7 @@ prettyProject :: Project -> String
 prettyProject = drawTree . asTree
 
 prettyReport :: Report -> String
-prettyReport r = 
+prettyReport r =
     printf
         "Budge: %.2f, Net: %.2f, Difference: %+.2f"
         (unMoney (budgetProfit r))
