@@ -2,8 +2,6 @@ module Transformers where
 
 import           Data.Char (isLower, isUpper)
 
--- main1 :: IO ()
--- main1 = do
 readUserName :: IO (Maybe String)
 readUserName = do
   putStrLn "Please enter your name!"
@@ -24,12 +22,12 @@ readPassword :: IO (Maybe String)
 readPassword = do
   putStrLn "Please enter your Password!"
   str <- getLine
-  if length str < 8 || null (filter isUpper str) || null (filter isLower str)
+  if length str < 8 || not (any isUpper str) || not (any isLower str)
     then return Nothing
     else return $ Just str
 
 login :: String -> String -> String -> IO ()
-login username email password = putStrLn $ "Now logged in as: " ++ username
+login username _ _ = putStrLn $ "Now logged in as: " ++ username
 
 main1 :: IO ()
 main1 = do

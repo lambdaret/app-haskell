@@ -4,8 +4,6 @@ module ExAeson2 where
 
 import           Control.Applicative
 import           Data.Aeson
-import           Data.Aeson.Key
-import qualified Data.Aeson.KeyMap   as KM
 import           Data.Text           (Text)
 import           Data.Vector         (toList)
 
@@ -19,10 +17,10 @@ data Person = Person {name :: Text, age :: Int} deriving (Show)
 
 instance FromJSON Person where
   parseJSON (Object v) = Person <$> v .: "name" <*> v .: "age"
-    where
-      getDates (Object o) = do
-        return $ map toString (KM.keys o)
-  parseJSON _ = empty
+    -- where
+    --   getDates (Object o) = do
+    --     return $ map toString (KM.keys o)
+  parseJSON _          = empty
 
 newtype PersonList = PersonList {unPersonList :: [Person]} deriving (Show)
 
@@ -37,8 +35,10 @@ instance FromJSON PersonList where
 --     return $ Person {name = name, age = age}
 --   parseJSON _ = empty
 
+getData1 :: Maybe Person
 getData1 = decode "{\"name\": \"hi\", \"age\":10}" :: Maybe Person
 
+getData2 :: Maybe PersonList
 getData2 = decode "[{\"name\": \"hi\", \"age\":10}]" :: Maybe PersonList
 
 -- instance FromJSON [Person] where

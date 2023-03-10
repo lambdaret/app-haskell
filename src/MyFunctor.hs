@@ -1,8 +1,4 @@
--- {-# LANGUAGE UndecidableInstances #-}
-
 module MyFunctor where
-
--- import GHC.Num.BigNat (bigNatAdd)
 
 newtype MyList a = MyList
   { unMyList :: [a]
@@ -30,6 +26,7 @@ instance Monoid (MyList a) where
 -- instance Applicative MyList => Monad MyList where
 --   (MyList xs) >>= f = MyList [y | x <- xs, y <- unMyList (f x)]
 
+f123 :: (Monad m, Num b) => m b -> m b
 f123 x = do
   y <- x
   return $ y * 2

@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 module Ex1 where
 
 import           Data.Aeson

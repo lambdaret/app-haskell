@@ -1,6 +1,5 @@
 module TransformersLifting where
 
--- import Control.Monad (join)
 import           Control.Monad.IO.Class     (MonadIO (liftIO))
 import           Control.Monad.Trans.Class  (lift)
 import           Control.Monad.Trans.Maybe  (MaybeT (..))
@@ -39,12 +38,12 @@ readPassword :: MaybeT IO String
 readPassword = MaybeT $ do
   putStrLn "Please enter your Password!"
   str <- getLine
-  if length str < 8 || null (filter isUpper str) || null (filter isLower str)
+  if length str < 8 || not (any isUpper str) || not (any isLower str)
     then return Nothing
     else return $ Just str
 
 login :: String -> String -> String -> IO ()
-login username email password = putStrLn $ "Now logged in as: " ++ username
+login username _ _ = putStrLn $ "Now logged in as: " ++ username
 
 debugFunc :: (MonadIO m) => String -> m ()
 debugFunc input = liftIO $ putStrLn ("Successfully produced input: " ++ input)
@@ -76,6 +75,7 @@ main3 = do
 -- main4 = do
 --   u <- runReaderT readUserName'
 
+f1 :: IO ()
 f1 = do
   x <- runReaderT (runMaybeT readUserName') (Just "aaa", Just "bbb", Just "ccc")
   case x of

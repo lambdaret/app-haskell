@@ -32,8 +32,10 @@ instance FromJSON PersonList where
 --     return $ Person {name = name, age = age}
 --   parseJSON _ = empty
 
+getData1 :: Maybe Person
 getData1 = decode "{\"name\": \"hi\", \"age\":10}" :: Maybe Person
 
+getData2 :: Maybe PersonList
 getData2 = decode "[{\"name\": \"hi\", \"age\":10}]" :: Maybe PersonList
 
 -- instance FromJSON [Person] where

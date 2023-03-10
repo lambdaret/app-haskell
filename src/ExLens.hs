@@ -13,21 +13,18 @@ import           Network.HTTP.Simple
 apiUrl :: String
 apiUrl = "https://api.exchangerate.host/timeseries?start_date=2023-03-07&end_date=2023-03-07"
 
--- | Function to fetch and process the exchange rate data
--- fetchExchangeRates :: IO (Maybe (Map T.Text Double))
+fetchExchangeRates :: IO (Maybe Value)
 fetchExchangeRates = do
   request <- parseRequest apiUrl
   response <- httpJSON request :: IO (Response Value)
   let body = getResponseBody response
   return $ body ^. _Object ^. at "rates"
 
--- | Function to extract the exchange rates for a given symbol
 rateBySymbol :: Map T.Text Double -> Maybe (T.Text, Double)
 rateBySymbol ratesMap = do
   rateSymbol <- Data.Map.lookup "USD" ratesMap -- Replace "USD" with desired currency symbol
   return (T.pack "USD", rateSymbol)
 
--- | Entry point of the program
 mainLens :: IO ()
 mainLens = do
   maybeRates <- fetchExchangeRates
@@ -35,6 +32,7 @@ mainLens = do
     Nothing    -> putStrLn "Error fetching rates data"
     Just rates -> print rates
 
+getTestData :: IO (Response Value)
 getTestData = do
   let url = "https://api.exchangerate.host/timeseries?start_date=2023-03-06&end_date=2023-03-07"
   request <- parseRequest url

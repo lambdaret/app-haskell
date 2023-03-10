@@ -10,6 +10,7 @@ data Environment = Environment
     param3 :: String
   }
 
+loadEnv :: IO Environment
 loadEnv = do
   p1 <- lookupEnv "param1"
   p2 <- lookupEnv "param2"
@@ -38,6 +39,7 @@ func2' = do
   let res3 = func3 env
   return (2 + floor res3)
 
+mainRW :: IO ()
 mainRW = do
   env <- loadEnv
   let str = runReader func1' env

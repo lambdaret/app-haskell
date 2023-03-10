@@ -3,9 +3,7 @@
 
 module Demo where
 
-import           PrettyPrint
 import           Project
-import           Reporting
 
 someProject :: Project
 someProject = ProjectGroup "Sweden" [stockholm, gothenburg, malmo]

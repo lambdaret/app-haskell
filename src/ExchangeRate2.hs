@@ -6,16 +6,12 @@ import qualified Control.Applicative as A
 import           Data.Aeson
 import           Data.Aeson.Key
 import qualified Data.Aeson.KeyMap   as KM
-import           Data.Aeson.Types
-import           Data.List
-import           Data.Map
 import           Data.Maybe
 import           Data.Scientific
 import           Data.Text
-import qualified Data.Vector         as V
 import           Network.HTTP.Simple
-import           Numeric
 
+url :: Request
 url = "https://api.exchangerate.host/timeseries?start_date=2023-03-07&end_date=2023-03-07"
 
 -- data Rate = Rate
@@ -56,6 +52,7 @@ fromObject :: Value -> Object
 fromObject (Object o) = o
 fromObject _          = error "Error"
 
+getBody :: IO Value
 getBody = do
   response <- httpJSON url :: IO (Response Value)
   let v = getResponseBody response
@@ -83,6 +80,7 @@ test1 = do
 
   return (x * y * z)
 
+test2 :: [Integer]
 test2 = do
   i <- [1, 2, 3]
   j <- [4, 5]

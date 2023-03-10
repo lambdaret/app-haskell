@@ -2,12 +2,13 @@
 
 module ExJson where
 
-import           Data.Aeson          (Value (Object), withObject, (.:))
+-- import           Data.Aeson          (Value (Object), withObject, (.:))
 import           Data.Aeson.Types
 import           Data.Map
 import           Network.HTTP.Simple
 
 
+getObj :: Response Value -> Object
 getObj res = case getResponseBody res of
   Object o -> o
   _        -> error "Exception"
@@ -21,12 +22,12 @@ tupleizeFields = parseEither $
     return field1
 
 parseRates :: Value -> Maybe (Map String (Map String Double))
--- parseRates :: Value -> Maybe (Map String (Map String Double))
 parseRates = parseMaybe $
   withObject "rates" $ \obj -> do
     field1 <- obj .: "rates"
     return field1
 
+getJson :: IO ()
 getJson = do
   response <- httpJSON url :: IO (Response Value)
   print $ getObj response

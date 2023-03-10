@@ -18,7 +18,7 @@ calculate = do
 
 -- 실행을 위한 헬퍼 함수입니다.
 parseConfig :: String -> [(String, Int)]
-parseConfig config = [("x", 1), ("y", 2)]
+parseConfig _ = [("x", 1), ("y", 2)]
 
 -- `runMaybeT`를 사용하여 `MaybeT`를 제거합니다.
 -- `runReaderT`를 사용하여 `ReaderT`를 제거합니다.
