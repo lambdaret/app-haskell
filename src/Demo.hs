@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -fwarn-unused-imports #-}
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Demo where

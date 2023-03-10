@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 module ExNewtype where
 
 -- newtype PositiveInt = PositiveInt Int
@@ -23,4 +24,4 @@ import           Data.Word (Word8)
 newtype Bit = Bit Word8
 
 getBit :: Bit -> Int -> Bool
-getBit (Bit b) i = testBit b i
+getBit (Bit b) = testBit b

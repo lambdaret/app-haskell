@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 module Reporting where
 
 import           Data.Monoid (getSum)

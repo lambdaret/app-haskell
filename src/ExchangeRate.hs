@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module ExchangeRate where
@@ -13,15 +14,8 @@ import           Network.HTTP.Simple
 url :: Request
 url = "https://api.exchangerate.host/timeseries?start_date=2023-03-07&end_date=2023-03-07"
 
--- data Rate = Rate
---   { date :: Text,
---     symbol :: Text,
---     rate :: String
---   }
---   deriving (Show)
-
 data ExchangeRate = ExchangeRate
-  { -- { rates :: Maybe (Map String Double),
+  {
     dates :: Maybe [Text],
     rates :: [(Text, Text, Double)]
   }
@@ -42,39 +36,6 @@ instance FromJSON ExchangeRate where
       getRates _ = error "error"
   parseJSON _ = A.empty
 
--- data ExchangeRate = ExchangeRate
---   {
---     base :: Text,
---   }
---   deriving (Show)
-
--- data Rate = Rate
---   { base :: Text,
---     date :: Text,
---     symbol :: Text,
---     rate :: Maybe Double
---   }
-
--- instance FromJSON [Rate] where
---   parseJSON (Object o) = do
---     (base, date, symbol, rate) <- parseExchangeRate (Object o)
---     return $ Rate {base = base, date = date, symbol = symbol, rate = rate}
---   parseJSON _ = []
-
--- parseExchangeRate (Object v) = do
--- (date, rateObj) <- KM.toList rates
--- (symbol, rate) <- KM.toList rateObj
--- return (date, symbol, rate)
-
--- return Rate {base = base, date = date, symbol = symbol, rate = rate}
-
--- parseExchangeRate = do
---   response <- httpJSON url :: IO (Response Value)
---   let body = getResponseBody response
---   let o = case body of
---         Object o -> o
---         _ -> error "Error"
---   return o
 
 fromObject :: Value -> Object
 fromObject (Object o) = o
@@ -92,11 +53,9 @@ getBody2 = do
   let v = getResponseBody response
   return v
 
--- p :: Value -> [(Text, Maybe Value)]
 p :: Value -> [(Key, Value)]
 p v = do
-  ratesValue <- (KM.toList . fromObject . fromJust . KM.lookup "rates") (fromObject v)
-  return ratesValue
+  (KM.toList . fromObject . fromJust . KM.lookup "rates") (fromObject v)
 
 test1 :: Maybe Integer
 test1 = do

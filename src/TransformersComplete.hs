@@ -1,3 +1,5 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
+
 module TransformersComplete where
 
 import           Control.Monad.Trans.Maybe (MaybeT (..))

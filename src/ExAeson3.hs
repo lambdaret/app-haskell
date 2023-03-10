@@ -1,5 +1,6 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# OPTIONS_GHC -Wno-orphans #-}
+
 
 module ExAeson3 where
 

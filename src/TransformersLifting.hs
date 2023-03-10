@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 module TransformersLifting where
 
 import           Control.Monad.IO.Class     (MonadIO (liftIO))

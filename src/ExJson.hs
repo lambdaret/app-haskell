@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module ExJson where
@@ -18,14 +19,12 @@ getObj res = case getResponseBody res of
 tupleizeFields :: Value -> Either String (Map String (Map String Double))
 tupleizeFields = parseEither $
   withObject "rates" $ \obj -> do
-    field1 <- obj .: "rates"
-    return field1
+    obj .: "rates"
 
 parseRates :: Value -> Maybe (Map String (Map String Double))
 parseRates = parseMaybe $
   withObject "rates" $ \obj -> do
-    field1 <- obj .: "rates"
-    return field1
+    obj .: "rates"
 
 getJson :: IO ()
 getJson = do

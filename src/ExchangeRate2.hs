@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module ExchangeRate2 where
@@ -28,7 +29,7 @@ newtype Rate = Rate
 newtype RateList = RateList {unRateList :: [(Text, Text, Text)]} deriving (Show)
 
 data ExchangeRate = ExchangeRate
-  { -- { rates :: Maybe (Map String Double),
+  {
     dates :: Maybe [Text],
     rates :: [(Text, Text, Double)]
   }
@@ -66,8 +67,7 @@ getBody2 = do
 
 p :: Value -> [(Key, Value)]
 p v = do
-  ratesValue <- (KM.toList . fromObject . fromJust . KM.lookup "rates") (fromObject v)
-  return ratesValue
+  (KM.toList . fromObject . fromJust . KM.lookup "rates") (fromObject v)
 
 test1 :: Maybe Integer
 test1 = do

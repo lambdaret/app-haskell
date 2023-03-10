@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 module PrettyPrint where
 
 import qualified Data.Text   as Text

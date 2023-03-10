@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 module TransTest where
 
 import           Control.Monad.Trans.Class  (lift)

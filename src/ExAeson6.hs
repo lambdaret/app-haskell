@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE DeriveGeneric #-}
 
 module ExAeson6 where

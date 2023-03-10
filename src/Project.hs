@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module Project where

@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module ExLens where
@@ -36,8 +37,7 @@ getTestData :: IO (Response Value)
 getTestData = do
   let url = "https://api.exchangerate.host/timeseries?start_date=2023-03-06&end_date=2023-03-07"
   request <- parseRequest url
-  response <- httpJSON request :: IO (Response Value)
-  return response
+  httpJSON request :: IO (Response Value)
 
 -- response ^. to getResponseBody
 --  v ^. _Object ^. at "rates" . to fromJust . _Object
