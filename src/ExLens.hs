@@ -1,9 +1,11 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
+{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
+{-# HLINT ignore "Redundant ^." #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module ExLens where
 
-import           Control.Lens
+import           Control.Lens        (At (at), (^.))
 import           Data.Aeson.Lens
 import           Data.Aeson.Types
 import           Data.Map
