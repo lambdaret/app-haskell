@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module Database where
+module Etc.Database where
 
-import           Project
+import           Etc.Project
 import           System.Random (getStdRandom, randomR)
 
 getBudget :: ProjectId -> IO Budget

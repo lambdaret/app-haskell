@@ -1,18 +1,32 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module ExchangeRate where
+module Json.ExchangeRate2 where
 
 import qualified Control.Applicative as A
 import           Data.Aeson
 import           Data.Aeson.Key
 import qualified Data.Aeson.KeyMap   as KM
 import           Data.Maybe
+import           Data.Scientific
 import           Data.Text
 import           Network.HTTP.Simple
 
 url :: Request
 url = "https://api.exchangerate.host/timeseries?start_date=2023-03-07&end_date=2023-03-07"
+
+-- data Rate = Rate
+--   { date :: Text,
+--     symbol :: Text,
+--     rate :: Double
+--   }
+--   deriving (Show)
+newtype Rate = Rate
+  { unRate :: (Text, Text, Double)
+  }
+  deriving (Show)
+
+newtype RateList = RateList {unRateList :: [(Text, Text, Text)]} deriving (Show)
 
 data ExchangeRate = ExchangeRate
   {
@@ -28,14 +42,12 @@ instance FromJSON ExchangeRate where
     where
       getDates (Object o) = fmap toText (KM.keys o)
       getDates _          = []
-      -- x (Object o) = KM.lookup (fromText "abc") o
       getRates (Object o) = do
         date' <- KM.keys o
         (symbol', Number rate') <- (KM.toList . fromObject) (fromJust (KM.lookup date' o))
-        return (toText date', toText symbol', read (show rate'))
+        return (toText date', toText symbol', toRealFloat rate')
       getRates _ = error "error"
   parseJSON _ = A.empty
-
 
 fromObject :: Value -> Object
 fromObject (Object o) = o

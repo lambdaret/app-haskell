@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 
-module TransformersComplete where
+module Etc.TransformersComplete where
 
 import           Control.Monad.Trans.Maybe (MaybeT (..))
 import           Data.Char                 (isLower, isUpper)

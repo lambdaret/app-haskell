@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module ReaderWriter where
+module Etc.ReaderWriter where
 
 import           Control.Monad.Reader
 import           Data.Maybe           (fromMaybe)

@@ -1,10 +1,10 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module Reporting where
+module Etc.Reporting where
 
-import           Data.Monoid (getSum)
+import           Data.Monoid  (getSum)
 
-import qualified Database    as DB
-import           Project
+import qualified Etc.Database as DB
+import           Etc.Project
 
 data Report = Report
     { budgetProfit :: Money

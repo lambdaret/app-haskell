@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
-module Project where
+module Etc.Project where
 
 import           Data.Text (Text)
 

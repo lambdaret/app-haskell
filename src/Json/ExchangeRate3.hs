@@ -2,7 +2,7 @@
 {-# LANGUAGE DeriveGeneric         #-}
 {-# LANGUAGE DuplicateRecordFields #-}
 {-# LANGUAGE OverloadedStrings     #-}
-module ExchangeRate3 where
+module Json.ExchangeRate3 where
 
 import           Data.Aeson
 import qualified Data.ByteString.Lazy as BL

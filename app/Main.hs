@@ -1,6 +1,8 @@
 module Main (main) where
 
-import           Lib
+import           Env.EnvEx2 (envEx2)
+-- import           Lib
 
 main :: IO ()
-main = someFunc
+-- main = someFunc
+main = envEx2

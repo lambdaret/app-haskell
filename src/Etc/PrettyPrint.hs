@@ -1,12 +1,12 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module PrettyPrint where
+module Etc.PrettyPrint where
 
-import qualified Data.Text   as Text
+import qualified Data.Text     as Text
 import           Data.Tree
 import           Text.Printf
 
-import           Project
-import           Reporting
+import           Etc.Project
+import           Etc.Reporting
 
 asTree :: Project -> Tree String
 asTree project =

@@ -2,7 +2,7 @@
 {-# LANGUAGE DeriveGeneric     #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module ExAeson5 where
+module Json.ExAeson5 where
 
 import           Data.Aeson
 import           Data.Aeson.Types

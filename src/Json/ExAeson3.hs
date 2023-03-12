@@ -2,7 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 
-module ExAeson3 where
+module Json.ExAeson3 where
 
 import           Data.Aeson
 import           Data.Aeson.Types

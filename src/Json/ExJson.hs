@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module ExJson where
+module Json.ExJson where
 
 -- import           Data.Aeson          (Value (Object), withObject, (.:))
 import           Data.Aeson.Types

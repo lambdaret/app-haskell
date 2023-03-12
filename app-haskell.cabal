@@ -25,32 +25,34 @@ source-repository head
 
 library
   exposed-modules:
-      Database
-      Demo
-      Ex1
-      ExAeson1
-      ExAeson2
-      ExAeson3
-      ExAeson4
-      ExAeson5
-      ExAeson6
-      ExchangeRate
-      ExchangeRate2
-      ExchangeRate3
-      ExJson
-      ExLens
-      ExNewtype
-      ExType
+      Env.EnvEx1
+      Env.EnvEx2
+      Etc.Database
+      Etc.Demo
+      Etc.ExNewtype
+      Etc.ExType
+      Etc.MyFunctor
+      Etc.PrettyPrint
+      Etc.Project
+      Etc.ReaderWriter
+      Etc.Reporting
+      Etc.Transformers
+      Etc.TransformersComplete
+      Etc.TransformersLifting
+      Etc.TransTest
+      Json.Ex1
+      Json.ExAeson1
+      Json.ExAeson2
+      Json.ExAeson3
+      Json.ExAeson4
+      Json.ExAeson5
+      Json.ExAeson6
+      Json.ExchangeRate
+      Json.ExchangeRate2
+      Json.ExchangeRate3
+      Json.ExJson
+      Json.ExLens
       Lib
-      MyFunctor
-      PrettyPrint
-      Project
-      ReaderWriter
-      Reporting
-      Transformers
-      TransformersComplete
-      TransformersLifting
-      TransTest
   other-modules:
       Paths_app_haskell
   hs-source-dirs:
@@ -63,8 +65,8 @@ library
     , bytestring
     , cassava
     , containers
+    , dotenv
     , http-conduit
-    , hxt
     , lens
     , lens-aeson
     , mtl
@@ -92,8 +94,8 @@ executable app-haskell-exe
     , bytestring
     , cassava
     , containers
+    , dotenv
     , http-conduit
-    , hxt
     , lens
     , lens-aeson
     , mtl
@@ -122,8 +124,8 @@ test-suite app-haskell-test
     , bytestring
     , cassava
     , containers
+    , dotenv
     , http-conduit
-    , hxt
     , lens
     , lens-aeson
     , mtl

@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module ExType where
+module Etc.ExType where
 
 type Amount = Int
 

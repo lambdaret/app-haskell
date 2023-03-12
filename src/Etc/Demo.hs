@@ -1,9 +1,9 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Demo where
+module Etc.Demo where
 
-import           Project
+import           Etc.Project
 
 someProject :: Project
 someProject = ProjectGroup "Sweden" [stockholm, gothenburg, malmo]

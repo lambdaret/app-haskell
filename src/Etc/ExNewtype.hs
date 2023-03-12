@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module ExNewtype where
+module Etc.ExNewtype where
 
 -- newtype PositiveInt = PositiveInt Int
 -- mkPositiveInt :: Int -> Maybe PositiveInt

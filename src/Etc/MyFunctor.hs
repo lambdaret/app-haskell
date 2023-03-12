@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module MyFunctor where
+module Etc.MyFunctor where
 
 newtype MyList a = MyList
   { unMyList :: [a]

@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module ExAeson4 where
+module Json.ExAeson4 where
 
 import           Data.Aeson
 import qualified Data.Aeson.KeyMap as KM

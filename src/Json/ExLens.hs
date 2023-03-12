@@ -3,7 +3,7 @@
 {-# HLINT ignore "Redundant ^." #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module ExLens where
+module Json.ExLens where
 
 import           Control.Lens        (At (at), (^.))
 import           Data.Aeson.Lens

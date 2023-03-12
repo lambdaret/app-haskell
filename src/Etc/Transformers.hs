@@ -1,5 +1,5 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
-module Transformers where
+module Etc.Transformers where
 
 import           Data.Char (isLower, isUpper)
 

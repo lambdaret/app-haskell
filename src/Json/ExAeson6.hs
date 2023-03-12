@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE DeriveGeneric #-}
 
-module ExAeson6 where
+module Json.ExAeson6 where
 
 import           Data.Aeson
 import           GHC.Generics

@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module ExAeson1 where
+module Json.ExAeson1 where
 
 import           Control.Applicative
 import           Data.Aeson
