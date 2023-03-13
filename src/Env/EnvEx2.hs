@@ -10,8 +10,8 @@ newConfig = defaultConfig {
 
 envEx2 :: IO ()
 envEx2 = do
-  loadFile newConfig
-  -- loadFile defaultConfig
+  -- loadFile newConfig
+  loadFile defaultConfig
   a <- lookupEnv "AA"
   print a
 

@@ -39,7 +39,15 @@ dependencies:
 - bytestring
 - cassava
 - dotenv
-# - unordered-containers
+- hslogger
+- monad-logger
+- monad-logger-aeson
+- context
+- exceptions
+- fast-logger
+- unordered-containers
+- process
+- QuickCheck
 
 ghc-options:
 - -Wall

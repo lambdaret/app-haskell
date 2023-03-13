@@ -1,0 +1,27 @@
+type LogType = LogType' LogStr
+
+data LogType' a where
+  LogFileTimedRotate :: TimedFileLogSpec -> BufSize -> LogType' LogStr
+
+
+data TimedFileLogSpec = TimedFileLogSpec {
+    timed_log_file :: FilePath              
+  , timed_timefmt  :: TimeFormat            
+  , timed_same_timeframe  :: FormattedTime -> FormattedTime -> Bool
+}
+
+
+newTimedFastLogger :: IO FormattedTime -> LogType -> IO (TimedFastLogger, IO ())
+
+withTimedFastLogger :: IO FormattedTime -> LogType -> (TimedFastLogger -> IO a) -> IO a
+
+
+
+timeRotate fname = LogFileTimedRotate
+               (TimedFileLogSpec fname timeFormat sametime compressFile)
+               defaultBufSize
+   where
+       timeFormat = "%FT%H%M%S"
+       sametime = (==) on C8.takeWhile (/=T)
+       compressFile fp = void . forkIO $
+           callProcess "tar" [ "--remove-files", "-caf", fp <> ".gz", fp ]

@@ -5,4 +5,6 @@ import           Env.EnvEx2 (envEx2)
 
 main :: IO ()
 -- main = someFunc
-main = envEx2
+main = do
+  envEx2
+  print "hello"
