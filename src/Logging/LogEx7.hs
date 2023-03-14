@@ -72,8 +72,8 @@ myLog level message time = do
       l_start = loc_start loc,
       l_end = loc_end loc
     }
-
-myLog' :: ((FormattedTime -> LogStr) -> IO ()) -> Text -> Text -> IO ()
+-- type TimedFastLogger = (FormattedTime -> LogStr) -> IO ()
+myLog' :: HasCallStack => TimedFastLogger -> Text -> Text -> IO ()
 myLog' logger level message  = logger \time -> toLogStr $ encode $ LogData {
     log_time = pack $ C8.unpack time,
     log_level = level,
