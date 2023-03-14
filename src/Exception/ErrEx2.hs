@@ -22,11 +22,9 @@ sum2Pairs _ = throw NotEnoughElements
 errEx2 :: IO ()
 errEx2 = do
   handle handler $ do
-    let result = sum2Pairs [2,3,4]
-    print result
+    print $ sum2Pairs ([2,3,4] :: [Int])
   handle handler $ do
-    let result =sum2Pairs [2,3,4,5]
-    print result
+    print $ sum2Pairs ([2,3,4,5] :: [Int])
   where
     handler :: ListException -> IO ()
-    handler e = print e
+    handler = print

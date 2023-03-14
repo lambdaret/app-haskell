@@ -23,8 +23,7 @@ errEx3 :: IO ()
 errEx3 = do
   handle handler $ readFile "does_not_exist.txt" >>= print
   handle handler $ do
-    let result = sum2Pairs [2,3,4,5]
-    print result
+    print $ sum2Pairs ([2,3,4,5] :: [Int])
   where
     handler :: ListException -> IO ()
-    handler e = print e
+    handler = print
