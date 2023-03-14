@@ -15,7 +15,6 @@ import Data.Function (on)
 import Data.Text
 import Data.Aeson
 import GHC.Generics
-import Data.ByteString.Lazy (ByteString)
 
 -- {"time":"2023-03-14T09:14:13.0032114Z","level":"debug","location":{"package":"main","module":"Logging.LogEx3","file":"/workspaces/workspaces_ubuntu/app-haskell/src/Logging/LogEx3.hs","line":11,"char":3},"message":{"text":"Doing stuff","meta":{"x":42}}}
 data Location = Location {
@@ -56,38 +55,34 @@ instance ToJSON LogData where
                                       _ -> f
             }
 
-myLog :: HasCallStack => Text -> Text -> FormattedTime -> LogStr
+getLocation :: HasCallStack => Location
+getLocation = toLocation $ locFromCS callStack
+  where 
+    toLocation loc = Location {
+      l_filename = pack $ loc_filename loc,
+      l_package = pack $ loc_package loc,
+      l_module = pack $ loc_module loc,
+      l_start = loc_start loc,
+      l_end = loc_end loc
+    }
+
+myLog :: Text -> Text -> FormattedTime -> LogStr
 myLog level message time = do
   toLogStr $ encode $ LogData {
     log_time = pack $ C8.unpack time,
     log_level = level,
     log_message = message,
-    log_location = toLocation $ locFromCS callStack
+    log_location = getLocation
   }
-  where 
-    toLocation loc = Location {
-      l_filename = pack $ loc_filename loc,
-      l_package = pack $ loc_package loc,
-      l_module = pack $ loc_module loc,
-      l_start = loc_start loc,
-      l_end = loc_end loc
-    }
+
 -- type TimedFastLogger = (FormattedTime -> LogStr) -> IO ()
-myLog' :: HasCallStack => TimedFastLogger -> Text -> Text -> IO ()
+myLog' :: TimedFastLogger -> Text -> Text -> IO ()
 myLog' logger level message  = logger \time -> toLogStr $ encode $ LogData {
     log_time = pack $ C8.unpack time,
     log_level = level,
     log_message = message,
-    log_location = toLocation $ locFromCS callStack
+    log_location = getLocation
   }
-  where 
-    toLocation loc = Location {
-      l_filename = pack $ loc_filename loc,
-      l_package = pack $ loc_package loc,
-      l_module = pack $ loc_module loc,
-      l_start = loc_start loc,
-      l_end = loc_end loc
-    }
 
 x :: HasCallStack => FormattedTime -> Message
 x time = do
