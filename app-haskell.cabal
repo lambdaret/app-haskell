@@ -40,6 +40,11 @@ library
       Etc.TransformersComplete
       Etc.TransformersLifting
       Etc.TransTest
+      Exception.ErrEx1
+      Exception.ErrEx2
+      Exception.ErrEx3
+      Exception.ErrEx4
+      Exception.ErrEx5
       Json.Ex1
       Json.ExAeson1
       Json.ExAeson2
@@ -58,6 +63,7 @@ library
       Logging.LogEx3
       Logging.LogEx4
       Logging.LogEx5
+      Logging.LogEx6
   other-modules:
       Paths_app_haskell
   hs-source-dirs:
