@@ -56,9 +56,25 @@ instance ToJSON LogData where
                                       _ -> f
             }
 
-myLog :: HasCallStack => Text -> Text -> FormattedTime -> ByteString
+myLog :: HasCallStack => Text -> Text -> FormattedTime -> LogStr
 myLog level message time = do
-  encode $ LogData {
+  toLogStr $ encode $ LogData {
+    log_time = pack $ C8.unpack time,
+    log_level = level,
+    log_message = message,
+    log_location = toLocation $ locFromCS callStack
+  }
+  where 
+    toLocation loc = Location {
+      l_filename = pack $ loc_filename loc,
+      l_package = pack $ loc_package loc,
+      l_module = pack $ loc_module loc,
+      l_start = loc_start loc,
+      l_end = loc_end loc
+    }
+
+myLog' :: ((FormattedTime -> LogStr) -> IO ()) -> Text -> Text -> IO ()
+myLog' logger level message  = logger \time -> toLogStr $ encode $ LogData {
     log_time = pack $ C8.unpack time,
     log_level = level,
     log_message = message,
@@ -85,10 +101,10 @@ logEx7 = do
   timeformat <- newTimeCache (C8.pack "%F_%H%M%S")
   let logspec = TimedFileLogSpec "logex7.log" "%F_%H%M" (on (==) (BS.take 15)) check
   let logtype = LogFileTimedRotate logspec defaultBufSize
-  withTimedFastLogger timeformat logtype $ \logger->do
+  withTimedFastLogger timeformat logtype $ \logger -> do
     -- logger (\time -> toLogStr time <> " " <> "hi" <> "\n")
     -- logger (toLogStr . x)
-    logger (toLogStr . myLog "info" "로그메시지")
-
+    -- logger (myLog "info" "로그메시지")
+    myLog' logger "info" "로그메시지"
 
 
