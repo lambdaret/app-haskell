@@ -40,3 +40,20 @@ timeRotate fname = LogFileTimedRotate
        sametime = (==) on C8.takeWhile (/=T)
        compressFile fp = void . forkIO $
            callProcess "tar" [ "--remove-files", "-caf", fp <> ".gz", fp ]
+
+import GHC.Stack (CallStack, HasCallStack, callStack)
+
+logDebug :: (HasCallStack, MonadLogger m) => Message -> m ()
+logDebug = logDebugCS callStack
+
+logCS
+  :: (MonadLogger m)
+  => CallStack
+  -> LogSource
+  -> LogLevel
+  -> Message
+  -> m ()
+logCS cs logSource logLevel msg =
+  monadLoggerLog (locFromCS cs) logSource logLevel $ toLogStr msg
+
+import Control.Monad.Logger.Aeson.Internal (locFromCS)

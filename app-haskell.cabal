@@ -64,6 +64,7 @@ library
       Logging.LogEx4
       Logging.LogEx5
       Logging.LogEx6
+      Logging.LogEx7
   other-modules:
       Paths_app_haskell
   hs-source-dirs:
