@@ -1,3 +1,18 @@
+runFastLoggingT :: LoggerSet -> LoggingT m a -> m a
+runFastLoggingT loggerSet = flip runLoggingT (fastLoggerOutput loggerSet)
+
+fastLoggerOutput
+  :: LoggerSet
+  -> Loc
+  -> LogSource
+  -> LogLevel
+  -> LogStr
+  -> IO ()
+fastLoggerOutput loggerSet =
+  defaultOutputWith $ defaultOutputOptions $ \_logLevel bytes -> do
+    FastLogger.pushLogStrLn loggerSet $ toLogStr bytes
+
+
 type LogType = LogType' LogStr
 
 data LogType' a where
